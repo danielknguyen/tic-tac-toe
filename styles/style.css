@@ -1,9 +1,53 @@
-#ttt-container, body, html {
-	position:fixed;
+#header {
+	margin-top:30px;
 	width:100%;
-	height:100%;
+	min-width:630px;
+	background-color:#ECECEC;
+}
+#footer {
+	width:100%;
+	min-width:630px;
+	background-color:#ECECEC;
+}
+#ttt-container {
+	width:100%;
+	height:400px;
 	margin:0;
 	background-color:#14bdac;
+}
+.scoreBoard {
+	height:50px;
+	width:350px;
+	font-size:2em;
+	margin:5px auto;
+}
+.player1 {
+	line-height:40px;
+	float:left;
+	height:50px;
+	width:100px;
+	padding:5px 10px;
+	border:1px solid black;
+}
+.player1:hover {
+	border-bottom:7px solid green;
+}
+.player2 {
+	line-height:40px;
+	float:right;
+	height:50px;
+	width:100px;
+	padding:5px 10px;
+	border:1px solid black;
+}
+.player2:hover {
+	border-bottom:7px solid red;
+}
+.xo {
+	float:left;
+}
+.score {
+	float:right;
 }
 #ttt-div {
 	width:600px;
@@ -11,10 +55,17 @@
 	margin:25px auto;
 }
 .ttt-title {
-	margin:25px 0;
 	text-align:center;
-	font-size:5em;
-	font-family:'Fresca', sans-serif;
+	margin:10px 0;
+	font-size:4em;
+	font-family: 'Fresca', sans-serif;
+}
+.ttt-restart {
+	position:relative;
+	text-align:center;
+	font-size:2em;
+	margin:5px 0;
+	font-family: 'Fresca', sans-serif;
 }
 .ttt-squares {
 	width:600px;
@@ -23,8 +74,8 @@
 }
 .squares {
 	display:inline-block;
-	height:150px;
-	width:150px;
+	height:115px;
+	width:115px;
 }
 #sq-1,#sq-4,#sq-7 {
 	border-right:5px solid grey;
