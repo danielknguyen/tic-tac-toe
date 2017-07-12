@@ -5,11 +5,12 @@ $(document).ready(function(){
 	var computer = 'o';
 	// array of values that will be checked for a winner
 	var turns = [];
+	// array of slots that have been inputted
+	var usedSlots = [];
 	// keep track of who's turn it is
 	var playersTurn = true;
 	// prevent infinite loop for tic tac toe AI
-	// var count = 0;
-
+	var count = 0;
 	// function to assign player/computer to x and or o
 	function selectPlayer(){
 		if(player === 'x') {
@@ -22,7 +23,6 @@ $(document).ready(function(){
 			$('#player1').css('border-color','#000000');	
 		}
 	}
-
 	// change player/computer to x and or o upon clicking
 	$('#player1').on('click',function(){
 		if(player !== 'x'){
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	});
 	// function to check if a spot is open
 	function checkIfSlotsOpen(player,id){
-		var slotsClosed = $('#' + id)["0"].innerHTML;
+		var slotsClosed = $('#' + id).text();
 		if(slotsClosed === ''){
 			turns[id] = player;
 			$('#' + id).text(player);
@@ -52,17 +52,27 @@ $(document).ready(function(){
 	// when a square on the board is clicked program will check if it is empty, if it is empty it will be filled with player/computer's character
 	$('.squares').on('click',function(){
 		var slot = $(this).attr('id');
-		// if(playersTurn){
+		if(playersTurn && usedSlots.indexOf(slot) < 0){
+			console.log(slot);
+			console.log(turns.indexOf(slot));
 			playersTurn = false;
 			checkIfSlotsOpen(player,slot);
-			// count++;
-			// console.log('count: ' + count);
-		// }
+			usedSlots.push(slot);
+			count++;
+			console.log('count: ' + count);
+			// once players turn has ended computer will make a play
+			if(playersTurn === false && count !== 5){
+				computersTurn();
+				playersTurn = true;
+			}
+		}
 	});
 	// reset the tic tac toe game
 	function resetGame(){
-		var turns = [];
+		turns = [];
+		usedSlots = [];
 		$('.squares').text('');
+		playersTurn = true;
 		count = 0;
 		console.log(turns);
 	}
@@ -70,15 +80,18 @@ $(document).ready(function(){
 	$('#ttt-restart').on('click',function(){
 		resetGame();
 	});
-
-	// function computersTurn(){
-	// 	var computerSlot = 'sq-' + (Math.random() * 9).toFixed();
-	// 	if(!playersTurn){
-	// 		while(count !== 5 && !playersTurn){
-	// 			checkIfSlotsOpen(computer,computerSlot);
-	// 		} else {
-	// 			playersTurn = true;
-	// 		}
-	// 	}
-	// }
+	// function to create the computers input
+	function computersTurn(){
+		var computerSlot = 'sq-' + (Math.random() * 8).toFixed();
+		var checkComputerSlot = checkIfSlotsOpen(computer,computerSlot);
+		while(checkComputerSlot === false){
+			computerSlot = 'sq-' + (Math.random() * 8).toFixed();
+			var checkComputerSlot = checkIfSlotsOpen(computer,computerSlot);
+			// console.log('this is the computers slot: ' + computerSlot);
+			// console.log('check computer slot: ' + checkComputerSlot);
+			if(checkComputerSlot !== false){
+				usedSlots.push(computerSlot);
+			}
+		}	
+	}
 });

@@ -76,13 +76,13 @@
 	user-select:none;
 	cursor:pointer;
 }
-#sq-1,#sq-4,#sq-7 {
+#sq-0,#sq-3,#sq-6 {
 	border-right:5px solid grey;
 }
-#sq-3,#sq-6,#sq-9 {
+#sq-2,#sq-5,#sq-8 {
 	border-left:5px solid grey;
 }
-#sq-4,#sq-5,#sq-6 {
+#sq-3,#sq-4,#sq-5 {
 	border-top:5px solid grey;
 	border-bottom:5px solid grey;
 }
