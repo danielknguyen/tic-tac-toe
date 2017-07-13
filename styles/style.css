@@ -40,7 +40,7 @@
 #playerX,#playerO {
 	float:left;
 }
-.score {
+#playerScore, #computerScore {
 	float:right;
 }
 #ttt-div {

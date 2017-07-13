@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	// player turn will be x
 	var player = 'x';
+	// score tracker
+	var playerScore = 0;
+	var computerScore = 0;
 	// computer turn will be o
 	var computer = 'o';
 	// array of values that will be checked for a winner
@@ -61,9 +64,12 @@ $(document).ready(function(){
 			winningCondition(turns,player);
 			// once players turn has ended computer will make a play
 			if(playersTurn === false){
-				computersTurn();
-				winningCondition(turns,computer);
-				playersTurn = true;
+				setTimeout(function(){
+					computersTurn();
+					winningCondition(turns,computer);
+					playersTurn = true;
+				},1000);
+				
 			}
 		}
 	});
@@ -71,9 +77,34 @@ $(document).ready(function(){
 	function resetGame(){
 		turns = [];
 		usedSlots = [];
+		playerScore = 0;
+		computerScore = 0;
+		$('#playerScore').text('-');
+		$('#computerScore').text('-');
 		$('.squares').text('');
 		playersTurn = true;
 		// console.log(turns);
+	}
+	// clears the tic tac toe board with scores still in tack
+	function clearBoard(){
+		turns = [];
+		usedSlots = [];
+		playersTurn = true;
+		setTimeout(function(){
+			$('.squares').text('');
+		},500);
+	}
+	// function to keep score
+	function keepScore(currentPlayer){
+		clearBoard();
+		setTimeout(function(){alert('current player: ' + currentPlayer.toUpperCase() + ' ' + 'has won!')},500);
+		if(currentPlayer === 'x'){
+			playerScore++;
+			$('#playerScore').text(playerScore);
+		} else {
+			computerScore++;
+			$('#computerScore').text(computerScore);
+		}
 	}
 	// when restart is clicked the tic tac toe board will clear
 	$('#ttt-restart').on('click',function(){
@@ -95,36 +126,28 @@ $(document).ready(function(){
 	function winningCondition(slotsUsed,currentPlayer){
 		// vertical row 1
 		if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
-			alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+			keepScore(currentPlayer);
 			// vertical row 2
 		} else if(slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			// vertical row 3
 		} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			// horizontal row 1
 		} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-2'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			// horizontal row 2
 		}	else if(slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			// horizontal row 3
 		} else if(slotsUsed['sq-6'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			// diagonal left
 		} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 			//diagonal right
 		} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
-				alert('Player: ' + currentPlayer + ' ' + ' has won!');
-				resetGame();
+				keepScore(currentPlayer)
 		}
 	}
 });
