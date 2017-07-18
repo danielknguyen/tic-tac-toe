@@ -65,7 +65,7 @@ $(document).ready(function(){
 			checkIfSlotsOpen(player,slot);
 			winningCondition(turns,player);
 			// once players turn has ended computer will make a play
-			if(playersTurn === false){
+			if(playersTurn === false && count !== 9){
 				setTimeout(function(){
 					computersTurn();
 					winningCondition(turns,computer);
@@ -85,7 +85,6 @@ $(document).ready(function(){
 		$('.squares').text('');
 		playersTurn = true;
 		count = 0;
-		// console.log(turns);
 	}
 	// clears the tic tac toe board with scores still in tack
 	function clearBoard(){
@@ -116,14 +115,13 @@ $(document).ready(function(){
 		resetGame();
 	});
 	//check for infinite loop
-	var calls = 0;
-	function iSuspectToBeLoopingInfititely() {
-	  calls += 1;
-	  if (calls > 100) { debugger; }
-	}
+	// var calls = 0;
+	// function iSuspectToBeLoopingInfititely() {
+	//   calls += 1;
+	//   if (calls > 100) { debugger; }
+	// }
 	// function to create the computers input
 	function computersTurn(){
-		// var canComputerGo = true;
 		var computerSlot = 'sq-' + (Math.random() * 8).toFixed();
 		var checkComputerSlot = checkIfSlotsOpen(computer,computerSlot);
 		while(!checkComputerSlot && count !== 9){
@@ -132,36 +130,40 @@ $(document).ready(function(){
 			// iSuspectToBeLoopingInfititely();
 			// console.log('this is the computers slot: ' + computerSlot);
 			// console.log('check computer slot: ' + checkComputerSlot);
-		}
-		
+		}	
 	}
 	// this will identify the winning condition at the end of each turn
 	function winningCondition(slotsUsed,currentPlayer){
-			// vertical row 1
-			if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
-				keepScore(currentPlayer);
-				// vertical row 2
-			} else if(slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer){
-					keepScore(currentPlayer)
-				// vertical row 3
-			} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-					keepScore(currentPlayer)
-				// horizontal row 1
-			} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-2'] === currentPlayer){
-					keepScore(currentPlayer)
-				// horizontal row 2
-			}	else if(slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer){
-					keepScore(currentPlayer)
-				// horizontal row 3
-			} else if(slotsUsed['sq-6'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-					keepScore(currentPlayer)
-				// diagonal left
-			} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
-					keepScore(currentPlayer)
-				//diagonal right
-			} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
-					keepScore(currentPlayer)
-				//if board is full and no winners; alert it is a tie
-			}
-		}	
+		// vertical row 1
+		if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
+			keepScore(currentPlayer);
+			// vertical row 2
+		} else if(slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer){
+				keepScore(currentPlayer)
+			// vertical row 3
+		} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
+				keepScore(currentPlayer)
+			// horizontal row 1
+		} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-1'] === currentPlayer && slotsUsed['sq-2'] === currentPlayer){
+				keepScore(currentPlayer)
+			// horizontal row 2
+		}	else if(slotsUsed['sq-3'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-5'] === currentPlayer){
+				keepScore(currentPlayer)
+			// horizontal row 3
+		} else if(slotsUsed['sq-6'] === currentPlayer && slotsUsed['sq-7'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
+				keepScore(currentPlayer)
+			// diagonal left
+		} else if(slotsUsed['sq-0'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-8'] === currentPlayer){
+				keepScore(currentPlayer)
+			//diagonal right
+		} else if(slotsUsed['sq-2'] === currentPlayer && slotsUsed['sq-4'] === currentPlayer && slotsUsed['sq-6'] === currentPlayer){
+				keepScore(currentPlayer)
+			//if board is full and no winners; alert it is a tie
+		} else if(count === 9) {
+				setTimeout(function(){
+					alert('It is a tie!');
+					clearBoard();
+				},500);	
+		}
+	}	
 });
