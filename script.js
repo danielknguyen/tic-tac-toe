@@ -175,8 +175,8 @@ $(document).ready(function(){
 				keepScore(currentPlayer)
 			//if board is full and no winners; alert it is a tie
 		} else if(count === 9) {
+				$('#winnerText').text('It is a tie!');
 				setTimeout(function(){
-					$('#winnerText').text('It is a tie!');
 					clearBoard();
 				},500);	
 		}
