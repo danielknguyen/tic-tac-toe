@@ -18,12 +18,21 @@ $(document).ready(function(){
 	function selectPlayer(){
 		if(player === 'x') {
 			computer = 'o';
-			$('#player1').css('border-color','#14bdac')
-			$('#player2').css('border-color','#000000');
+			$('#player1')
+				.css('background-color','#ECECEC')
+				.css('color', '#14bdac');
+			$('#player2')
+				.css('background-color','#ECECEC')
+				.css('color', '#000000');
+
 		} else {
 			computer = 'x';
-			$('#player2').css('border-color','#14bdac');
-			$('#player1').css('border-color','#000000');	
+			$('#player2')
+				.css('background-color','#ECECEC')
+				.css('color', '#14bdac');
+			$('#player1')
+				.css('color', '#000000')
+				.css('background-color', '#ECECEC');	
 		}
 	}
 	// change player/computer to x and or o upon clicking
@@ -60,6 +69,7 @@ $(document).ready(function(){
 	$('.squares').on('click',function(){
 		var slot = $(this).attr('id');
 		if(playersTurn && usedSlots.indexOf(slot) < 0){
+			$('#winnerText').text('');
 			console.log(slot);
 			playersTurn = false;
 			checkIfSlotsOpen(player,slot);
@@ -83,6 +93,7 @@ $(document).ready(function(){
 		$('#playerScore').text('-');
 		$('#computerScore').text('-');
 		$('.squares').text('');
+		$('#winnerText').text('');
 		playersTurn = true;
 		count = 0;
 	}
@@ -100,8 +111,8 @@ $(document).ready(function(){
 	function keepScore(currentPlayer){
 		clearBoard();
 		setTimeout(function(){
-			alert('current player: ' + currentPlayer.toUpperCase() + ' ' + 'has won!')
-		},500);
+			$('#winnerText').text(currentPlayer.toUpperCase() + ' ' + 'has won!');
+			},500);
 		if(currentPlayer === 'x'){
 			playerScore++;
 			$('#playerScore').text(playerScore);
@@ -161,7 +172,7 @@ $(document).ready(function(){
 			//if board is full and no winners; alert it is a tie
 		} else if(count === 9) {
 				setTimeout(function(){
-					alert('It is a tie!');
+					$('#winnerText').text('It is a tie!');
 					clearBoard();
 				},500);	
 		}
