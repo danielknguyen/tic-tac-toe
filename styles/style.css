@@ -97,3 +97,26 @@
 	text-align:center;
 	font-family: 'Bree Serif', serif;
 }
+
+@media(max-width:599px) {
+	#header {
+		width:400px;
+	}
+	#footer {
+		width:400px;
+	}
+	#ttt-container {
+		width:400px;
+	}
+	#scoreBoard {
+		width:300px;
+	}
+	#ttt-div {
+		width:400px;
+	}
+	.ttt-squares {
+		width:400px;
+		height:100px;
+		margin:0 -15px;	
+	}
+}
