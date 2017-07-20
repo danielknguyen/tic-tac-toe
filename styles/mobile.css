@@ -50,6 +50,9 @@
 	line-height:150px;
 	font-size:5em;
 }
+#sq-0,#sq-1,#sq-2 {
+	line-height:200px;
+}
 #sq-0,#sq-3,#sq-6 {
 	border-right:20px solid grey;
 }

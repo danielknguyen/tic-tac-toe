@@ -67,16 +67,20 @@
 	height:100px;
 	display:table;
 	margin:0 -64px;
+	font-size:2em;
 	text-align:center;
 }
 .squares {
 	display:inline-block;
 	height:115px;
 	width:115px;
-	line-height:105px;
-	font-size:5.5em;
+	line-height:65px;
+	font-size:5em;
 	user-select:none;
 	cursor:pointer;
+}
+#sq-0,#sq-1,#sq-2 {
+	line-height:95px;
 }
 #sq-0,#sq-3,#sq-6 {
 	border-right:10px solid grey;
