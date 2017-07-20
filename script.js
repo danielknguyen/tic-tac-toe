@@ -20,19 +20,23 @@ $(document).ready(function(){
 			computer = 'o';
 			$('#player1')
 				.css('background-color','#ECECEC')
-				.css('color', '#14bdac');
+				.css('color', '#14bdac')
+				.css('border-color','#14bdac');
 			$('#player2')
 				.css('background-color','#ECECEC')
-				.css('color', '#000000');
+				.css('color', '#000000')
+				.css('border-color','#000000');
 
 		} else {
 			computer = 'x';
 			$('#player2')
 				.css('background-color','#ECECEC')
-				.css('color', '#14bdac');
+				.css('color', '#14bdac')
+				.css('border-color','#14bdac');
 			$('#player1')
 				.css('color', '#000000')
-				.css('background-color', '#ECECEC');	
+				.css('background-color', '#ECECEC')
+				.css('border-color','#000000');	
 		}
 	}
 	// change player/computer to x and or o upon clicking
